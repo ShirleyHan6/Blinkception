@@ -24,7 +24,7 @@ import playground
 import sendEmail
 from sendEmail import sendEmail
 from sendEmail import sendWechatMessage
-from playground import *
+#from playground import *
 
 user=faceRecognize.is_recognized()
 f=open(r'records/userThresholds.txt','rb')
