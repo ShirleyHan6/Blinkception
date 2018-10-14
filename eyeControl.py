@@ -391,12 +391,12 @@ while True:
 
 		
 		pattern_list=[]
-
+ 	"""
 	if (TIME > 10):
 		# pass
 		sendEmail(user)
 		sendWechatMessage(user)
-	
+	"""
 	# cv2.putText(frame, message, (50, 150), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0,0,255), 2)
 	# if the `q` key was pressed, break from the loop
 	if key == ord("q"):
