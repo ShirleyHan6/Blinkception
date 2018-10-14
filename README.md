@@ -1,6 +1,10 @@
+This repository contains python programs developed during iNTUition 5.0, a one-day hackathon held by NTU Open Source Society and iEEE Student Organization in Nanyang Technological University, Singapore. 
+
 # Base website: 
 ## https://www.pyimagesearch.com/2017/04/24/eye-blink-detection-opencv-python-dlib/
 
+# More information on this project on DevPost
+https://devpost.com/software/blinkception
 # Installation instructions on Windows
 
 1) Download the latest version of Anaconda from https://www.anaconda.com/download/
