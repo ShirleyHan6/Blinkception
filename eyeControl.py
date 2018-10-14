@@ -310,74 +310,28 @@ while True:
 	cv2.imshow("Frame", frame)
 	key = cv2.waitKey(1) & 0xFF
 
-	if (len(pattern_list)>0 and all([bool(x) for x in pattern_list]) and pattern_list[-1]=='/') or len(pattern_list) > 6:
+	if (len(pattern_list)>1 and all([bool(x) for x in pattern_list]) and pattern_list[-1]=='/') or len(pattern_list) > 6:
 		RAISE_TOTAL,BLINK_TOTAL=0,0
 		message = "".join(pattern_list)[:-1] # to exclude the backslash
 		print(message)
 
 		current_element = getCurrentElement()
 		moveToElement(current_element)
-		if(message[0]=='b'):
+		if(message[-1]=='.'):
 			print("right")
-			if(count == 1):
-				next_element = getNextByCount(1)
-				moveToElement(next_element)
-				interactElement(next_element)
-			if(count == 2):
-				next_element = getNextByCount(2)
-				moveToElement(next_element)
-				interactElement(next_element)
-			if(count == 3):
-				next_element = getNextByCount(3)
-				moveToElement(next_element)
-				interactElement(next_element)
-			if(count == 3):
-				next_element = getNextByCount(3)
-				moveToElement(next_element)
-				interactElement(next_element)
-			if(count == 4):
-				next_element = getNextByCount(4)
-				moveToElement(next_element)
-				interactElement(next_element)
-			if(count == 5):
-				next_element = getNextByCount(5)
-				moveToElement(next_element)
-				interactElement(next_element)
-			if(count == 6):
-				next_element = getNextByCount(6)
-				moveToElement(next_element)
-				interactElement(next_element)
-			if(count == 7):
-				next_element = getNextByCount(7)
-				moveToElement(next_element)
-				interactElement(next_element)
-			if(count == 8):
-				next_element = getNextByCount(8)
-				moveToElement(next_element)
-				interactElement(next_element)
-			if(count == 9):
-				next_element = getNextByCount(9)
-				moveToElement(next_element)
-				interactElement(next_element)
-			if(count == 10):
-				next_element = getNextByCount(10)
-				moveToElement(next_element)
-				interactElement(next_element)
-			if(count == 11):
-				next_element = getNextByCount(11)
-				moveToElement(next_element)
-				interactElement(next_element)
-			next_element = getNextElement(count)
+			pre_element = getNextElement(count)
 			count+=1
-			current_element = next_element
-			moveToElement(next_element)
-			interactElement(next_element)
+			current_element = pre_element
+			# moveToElement(current_element)
+			interactElement(current_element)
+			print(current_element_global.get_attribute("class"))
+			sleep(1)
 
-		elif(message[0]=='r'):
+		elif(message[-1]=='-'):
 			pre_element = getPreviousElement(count)
 			count-=1
 			current_element = pre_element
-			moveToElement(current_element)
+			# moveToElement(current_element)
 			interactElement(current_element)
 			print(current_element_global.get_attribute("class"))
 			sleep(1)
@@ -391,12 +345,12 @@ while True:
 
 		
 		pattern_list=[]
- 	"""
+"""
 	if (TIME > 10):
 		# pass
 		sendEmail(user)
 		sendWechatMessage(user)
-	"""
+"""
 	# cv2.putText(frame, message, (50, 150), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0,0,255), 2)
 	# if the `q` key was pressed, break from the loop
 	if key == ord("q"):
