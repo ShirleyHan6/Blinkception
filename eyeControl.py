@@ -350,7 +350,7 @@ while True:
 
     if (SOS_start_time):
         # pass
-        # sendEmail(user)
+        sendEmail(user)
         sendWechatMessage(user)
 
     # cv2.putText(frame, message, (50, 150), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0,0,255), 2)
