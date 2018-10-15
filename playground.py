@@ -50,55 +50,50 @@ def getCurrentElement():
 
 #Highlights selected element
 def highlightElement(element):
-    driver.execute_script("arguments[0].setAttribute('style', 'background: #a8c9ff; border: 2px solid #a8c9ff;');", element)
-    sleep(2)
-    driver.execute_script("arguments[0].setAttribute('style', 'background: none');", element)
+    driver.execute_script("arguments[0].setAttribute('style', 'background: #a8c9ff; border: 2px solid #a8c9ff;');", element)#Give blue backgroun to element
+    sleep(2)#Show blue background for 2 seconds
+    driver.execute_script("arguments[0].setAttribute('style', 'background: none');", element)#Remove blue background
 
 #Scroll to selected element
 def moveToElement(element):
-    current_element_global = element
-    driver.execute_script("arguments[0].scrollIntoView(true);", element)
-    highlightElement(element)
+    current_element_global = element #Updates the global current element
+    driver.execute_script("arguments[0].scrollIntoView(true);", element)#Scrolls the element into view
+    highlightElement(element)#Highlights the element
 
 #Call interaction function depending based on type of element
 def interactElement(element, direction=0, word=""):
-    classes = element.get_attribute("class")
-    if("bc-navbar" in classes):
+    classes = element.get_attribute("class")#Gets the classes to which the element belongs
+    #if("bc-navbar" in classes):
+    #    clickButton(element)
+    #    new_current_element_global = driver.find_element_by_class_name("bc-1")
+    elif("bc-button" in classes):#Clicks the element if it is a button
         clickButton(element)
-        new_current_element_global = driver.find_element_by_class_name("bc-1")
-    elif(("bc-button" in classes) or ("bc-toggle" in classes)):
-        clickButton(element)
-    elif("bc-slide" in classes):
-        if(direction==1):
-            slideSliderRight(element)
-        elif(direction==2):
-            slideSliderLeft(element)
+    elif("bc-slide" in classes):#Slides the element if it is a slider
+        if(direction==1):#direction = 1 means the slider is moved right
+            slideSlider(element, 1)
+        elif(direction==2):#direction = 2 means the slider moves left
+            slideSlider(element, 2)
     elif("bc-input" in classes):
-        #TODO Clear global variable if new input field
         sendInput(element, word)
 
 #Click Selected Button
 def clickButton(element):
     element.click()
 
+def slideSlider(element, dir):
+    move = ActionChains(driver)
+    if(dir == 1):
+        move.click_and_hold(element).move_by_offset(45, 0).release().perform()
+    elif(dir == 2):
+        move.click_and_hold(element).move_by_offset(-45, 0).release().perform()
+    else:
+        print("Not a valid slide option")
+
 #Send keys to text input
 def sendInput(element, input_word):
-    #TODO Update global variable on new character entry and send to input field
     element.click()
     element.send_keys(input_word)
-    # print(input_word)
     print(" sendInput test")
-#Slide a slider to right
-def slideSliderRight(element):
-    print("Moving right")
-    move = ActionChains(driver)
-    move.click_and_hold(element).move_by_offset(45, 0).release().perform()
-
-#Slide a slider to left
-def slideSliderLeft(element):
-    print("Moving left")
-    move = ActionChains(driver)
-    move.click_and_hold(element).move_by_offset(-45, 0).release().perform()
 
 '''
 curr_element_id = 2
