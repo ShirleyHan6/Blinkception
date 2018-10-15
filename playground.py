@@ -3,10 +3,8 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver import ActionChains
 from time import sleep
 
-
 driver = webdriver.Firefox()
 driver.get('https://laksh22.github.io/blinkception-site/index.html')
-
 
 current_element_global = driver.find_element_by_class_name("bc-3")
 
@@ -80,6 +78,7 @@ def interactElement(element, direction=0, word=""):
 def clickButton(element):
     element.click()
 
+#Move selected slider
 def slideSlider(element, dir):
     move = ActionChains(driver)
     if(dir == 1):
@@ -95,23 +94,14 @@ def sendInput(element, input_word):
     element.send_keys(input_word)
     print(" sendInput test")
 
-'''
-curr_element_id = 2
-current_element = getCurrentElement(2)
-moveToElement(current_element)
-sleep(2)
-
-nextElement = getNextElement(curr_element_id)
-current_element = nextElement
-moveToElement(current_element)
-interactElement(current_element)
-'''
-
 """
+#This is to loop through each interactive element to see if code is working
 current_element = getCurrentElement()
 moveToElement(current_element)
+BEGINNING_CLASS_ID = 3 #Change depending on website
+ENDING_CLASS_ID = 17 #Change depending on website
 sleep(1)
-for i in range(3,17):
+for i in range(BEGINNING_CLASS_ID, ENDING_CLASS_ID+1):
     next_element = getNextElement(i)
     current_element = next_element
     moveToElement(current_element)
@@ -119,5 +109,4 @@ for i in range(3,17):
     print(current_element_global.get_attribute("class"))
     sleep(1)
 """
-# print(current_element_global.get_attribute("class"))
 
