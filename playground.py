@@ -1,9 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver import ActionChains
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 from time import sleep
 
 
@@ -12,42 +9,38 @@ driver.get('https://laksh22.github.io/blinkception-site/index.html')
 
 
 current_element_global = driver.find_element_by_class_name("bc-3")
-new_current_element_global = None
-
-def getNextByCount(counter):
-    counter += 1
-    return_element = driver.find_element_by_class_name("bc-" + str(counter))
-
-def getPrevByCount(counter):
-    counter -= 1
-    return_element = driver.find_element_by_class_name("bc-" + str(counter))
 
 #Get BlinkCeption element after current element
-def getNextElement(current_id):
+def getNextElement(current_class_id):
     next_class_name = "bc-1" #default - Go to first element if currently at last
-    
-    current_id_name = "bc-" + str(current_id)
-    current_element = driver.find_element_by_class_name(current_id_name)
-    current_element_global = current_element
+
+    current_class_id_name = "bc-" + str(current_id)
+    current_element = driver.find_element_by_class_name(current_class_id_name)
+
     is_last = "bc-last" in current_element.get_attribute("class") #Is the current element the last one
-    
+
     if(is_last != True):
-        next_id = current_id + 1
-        next_class_name = "bc-" + str(next_id)
-        print(next_id)
+        next_class_id = current_class_id + 1
+        next_class_name = "bc-" + str(next_class_id)
+        print(next_class_name)
+
     next_element = driver.find_element_by_class_name(next_class_name)
     return(next_element)
 
 #Get BlinkCeption element before current element
-def getPreviousElement(current_id):
-    previous_class_name = "bc-last"
-    current_id_name = "bc-" + str(current_id)
-    current_element = driver.find_element_by_class_name(current_id_name)
-    current_element_global = current_element
-    is_first = "bc-first" in current_element.get_attribute("class")
+def getPreviousElement(current_class_id):
+    previous_class_name = "bc-last"#default - Go to last element if currently at first
+
+    current_class_id_name = "bc-" + str(current_id)
+    current_element = driver.find_element_by_class_name(current_class_id_name)
+
+    is_first = "bc-first" in current_element.get_attribute("class")#Is the current element the first one
+
     if(is_first != True):
-        previous_id = current_id - 1
-        previous_class_name = "bc-" + str(previous_id)
+        previous_class_id = current_class_id - 1
+        previous_class_name = "bc-" + str(previous_class_id)
+        print(previous_class_name)
+
     previous_element = driver.find_element_by_class_name(previous_class_name)
     return(previous_element)
 
