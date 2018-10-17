@@ -41,7 +41,7 @@ Libraries for speech-to-text conversion and face-recognition:
 
 ``` pip install face_recognition ```
 
-##Configuring your website
+## Configuring your website
 To implement Blinkception, you need to modify the classes of all the web elements you want the user to interact with. The class name rules are as follows:
 1. ```bc-first``` and ``bc-1`` for the first element of each page.
 
